@@ -19,7 +19,9 @@ package com.android.settings.biometrics.face;
 import android.content.Context;
 import android.hardware.biometrics.BiometricAuthenticator;
 import android.hardware.face.FaceManager;
+import androidx.preference.Preference;
 
+import com.android.settings.custom.biometrics.FaceUtils;
 import com.android.settings.R;
 import com.android.settings.Settings;
 import com.android.settings.Utils;
@@ -62,6 +64,9 @@ public class FaceStatusUtils {
      * Returns the summary of face settings entity.
      */
     public String getSummary() {
+        if (FaceUtils.isFaceUnlockSupported() && FaceUtils.isFaceDisabledByAdmin(mContext)) {
+            return mContext.getResources().getString(R.string.disabled_by_administrator_summary);
+        }
         return mContext.getResources().getString(hasEnrolled()
                 ? R.string.security_settings_face_preference_summary
                 : R.string.security_settings_face_preference_summary_none);

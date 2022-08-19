@@ -27,6 +27,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
 
 import com.android.internal.annotations.VisibleForTesting;
+import com.android.settings.custom.biometrics.FaceUtils;
 import com.android.settings.Utils;
 import com.android.settings.biometrics.BiometricStatusPreferenceController;
 import com.android.settingslib.RestrictedLockUtils;
@@ -84,6 +85,9 @@ public class FaceStatusPreferenceController extends BiometricStatusPreferenceCon
     public void updateState(Preference preference) {
         super.updateState(preference);
         updateStateInternal();
+        if (FaceUtils.isFaceUnlockSupported()) {
+            preference.setEnabled(!FaceUtils.isFaceDisabledByAdmin(mContext));
+        }
     }
 
     private void updateStateInternal() {

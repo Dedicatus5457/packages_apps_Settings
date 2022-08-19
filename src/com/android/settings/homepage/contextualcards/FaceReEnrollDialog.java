@@ -28,6 +28,7 @@ import android.util.Log;
 
 import com.android.internal.app.AlertActivity;
 import com.android.internal.app.AlertController;
+import com.android.settings.custom.biometrics.FaceUtils;
 import com.android.settings.R;
 import com.android.settings.Utils;
 import com.android.settings.biometrics.face.FaceUpdater;
@@ -42,6 +43,8 @@ public class FaceReEnrollDialog extends AlertActivity implements
     private static final String TAG = "FaceReEnrollDialog";
 
     private static final String BIOMETRIC_ENROLL_ACTION = "android.settings.BIOMETRIC_ENROLL";
+    private static final String BIOMETRIC_ENROLL_ACTION_CUSTOM =
+        "com.android.settings.intent.action.FACE_ENROLL";
 
     private FaceManager mFaceManager;
     private FaceUpdater mFaceUpdater;
@@ -113,7 +116,9 @@ public class FaceReEnrollDialog extends AlertActivity implements
                     return;
                 }
                 // Send user to the enroll flow.
-                final Intent reEnroll = new Intent(BIOMETRIC_ENROLL_ACTION);
+                final Intent reEnroll = new Intent(
+                    FaceUtils.isFaceUnlockSupported() ?
+                    BIOMETRIC_ENROLL_ACTION_CUSTOM : BIOMETRIC_ENROLL_ACTION);
                 final Context context = getApplicationContext();
 
                 try {
