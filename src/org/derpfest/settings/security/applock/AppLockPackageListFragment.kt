@@ -32,7 +32,6 @@ import com.android.settings.R
 import com.android.settings.core.SubSettingLauncher
 import com.android.settingslib.PrimarySwitchPreference
 import com.android.settingslib.widget.TwoTargetPreference.ICON_SIZE_SMALL
-
 import org.derpfest.settings.preference.DerpDashboardFragment
 
 import kotlinx.coroutines.Dispatchers

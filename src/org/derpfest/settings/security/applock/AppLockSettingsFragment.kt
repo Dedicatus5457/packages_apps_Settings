@@ -24,12 +24,10 @@ import android.view.MenuItem
 
 import androidx.lifecycle.lifecycleScope
 
-import com.android.internal.logging.nano.MetricsProto.MetricsEvent
 import com.android.settings.R
 import com.android.settings.search.BaseSearchIndexProvider
 import com.android.settingslib.core.AbstractPreferenceController
 import com.android.settingslib.search.SearchIndexable
-
 import org.derpfest.settings.preference.DerpDashboardFragment
 
 @SearchIndexable

@@ -38,7 +38,7 @@ class AppLockNotificationRedactionPC(
 ) : DerpTogglePreferenceController(context, KEY) {
 
     private val appLockManager = context.getSystemService(AppLockManager::class.java)
-    private var shouldRedactNotification = AppLockManager.DEFAULT_REDACT_NOTIFICATION
+    private var shouldRedactNotification = false
     private var preference: Preference? = null
 
     init {
@@ -59,7 +59,6 @@ class AppLockNotificationRedactionPC(
     override fun isChecked() = shouldRedactNotification
 
     override fun setChecked(checked: Boolean): Boolean {
-        if (shouldRedactNotification == checked) return false
         shouldRedactNotification = checked
         coroutineScope.launch(Dispatchers.Default) {
             appLockManager.setShouldRedactNotification(packageName, checked)

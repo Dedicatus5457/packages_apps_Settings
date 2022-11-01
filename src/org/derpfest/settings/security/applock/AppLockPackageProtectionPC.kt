@@ -60,7 +60,6 @@ class AppLockPackageProtectionPC(
     override fun isChecked() = isProtected
 
     override fun setChecked(checked: Boolean): Boolean {
-        if (isProtected == checked) return false
         isProtected = checked
         coroutineScope.launch(Dispatchers.Default) {
             if (isProtected) {
